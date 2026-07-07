@@ -14,64 +14,26 @@ const products = [
 function BeerGlass({ product, active }) {
   return (
     <div className="relative flex justify-center">
-      {/* Glass */}
-      <div className="relative w-20 h-48">
-        {/* Glass outline */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-20 h-44 border-2 border-white/20 rounded-b-3xl rounded-t-xl overflow-hidden bg-black/20 backdrop-blur-sm">
-          {/* Glass rim highlight */}
-          <div className="absolute top-0 left-2 right-2 h-1 bg-white/10 rounded-full" />
-
-          {/* Beer liquid */}
-          <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t ${product.liquid} transition-all duration-[2000ms]`}
-            style={{ height: active ? "70%" : "0%" }} />
-
-          {/* Foam head */}
+      <div className="relative w-14 h-36 sm:w-16 sm:h-40 md:w-20 md:h-48">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-14 sm:w-16 md:w-20 h-32 sm:h-36 md:h-44 border-2 border-white/20 rounded-b-3xl rounded-t-xl overflow-hidden bg-black/20 backdrop-blur-sm">
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t transition-all duration-[2000ms]"
+            style={{ height: active ? "70%" : "0%", background: `linear-gradient(to top, var(--tw-gradient-stops))` }}
+            className={product.liquid} />
           <div className={`absolute left-0 right-0 bg-gradient-to-b ${product.foam} transition-all duration-[2000ms] delay-300 rounded-t-lg`}
-            style={{
-              height: active ? "16%" : "0%",
-              bottom: active ? "70%" : "0%",
-              opacity: active ? 1 : 0,
-            }}>
-            {/* Foam bubbles */}
-            {active && [...Array(8)].map((_, i) => (
+            style={{ height: active ? "16%" : "0%", bottom: active ? "70%" : "0%", opacity: active ? 1 : 0 }}>
+            {active && [...Array(6)].map((_, i) => (
               <div key={i} className="absolute rounded-full bg-white/40 animate-bubble"
-                style={{
-                  width: `${2 + Math.random() * 5}px`,
-                  height: `${2 + Math.random() * 5}px`,
-                  left: `${10 + i * 10}%`,
-                  top: `${20 + Math.random() * 60}%`,
-                  animationDelay: `${i * 0.2}s`,
-                  animationDuration: `${1.5 + Math.random() * 2}s`,
-                }}
-              />
+                style={{ width: `${2+Math.random()*4}px`, height: `${2+Math.random()*4}px`, left: `${10+i*12}%`, top: `${15+Math.random()*55}%`, animationDelay: `${i*0.25}s`, animationDuration: `${1.5+Math.random()*2}s` }} />
             ))}
           </div>
-
-          {/* Rising bubbles */}
-          {active && [...Array(12)].map((_, i) => (
+          {active && [...Array(8)].map((_, i) => (
             <div key={`b-${i}`} className="absolute rounded-full bg-white/30 animate-rise"
-              style={{
-                width: `${1 + Math.random() * 3}px`,
-                height: `${1 + Math.random() * 3}px`,
-                left: `${15 + Math.random() * 65}%`,
-                bottom: `${5 + Math.random() * 55}%`,
-                animationDelay: `${i * 0.3}s`,
-                animationDuration: `${2 + Math.random() * 3}s`,
-              }}
-            />
+              style={{ width: `${1+Math.random()*2}px`, height: `${1+Math.random()*2}px`, left: `${15+Math.random()*60}%`, bottom: `${5+Math.random()*50}%`, animationDelay: `${i*0.35}s`, animationDuration: `${2+Math.random()*3}s` }} />
           ))}
-
-          {/* Glass highlight stripe */}
-          <div className="absolute bottom-4 left-[60%] w-0.5 h-28 bg-white/5 rounded-full" />
-          <div className="absolute bottom-4 left-[25%] w-0.5 h-16 bg-white/3 rounded-full" />
+          <div className="absolute bottom-4 left-[60%] w-0.5 h-20 md:h-28 bg-white/5 rounded-full" />
         </div>
-
-        {/* Glass base */}
-        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-12 h-2 border-2 border-white/15 rounded-full" />
-        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-1 border-2 border-white/10 rounded-full" />
-
-        {/* Handle */}
-        <div className="absolute right-2 top-4 w-8 h-16 border-2 border-white/15 rounded-r-2xl rounded-l-md" />
+        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-9 sm:w-10 md:w-12 h-1.5 border-2 border-white/15 rounded-full" />
+        <div className="absolute right-1 top-3 w-6 h-12 md:w-8 md:h-16 border-2 border-white/15 rounded-r-2xl rounded-l-md" />
       </div>
     </div>
   );
@@ -90,76 +52,45 @@ export default function ProductsPage({ active, onWheel }) {
   }, [onWheel]);
 
   useEffect(() => {
-    if (active) {
-      const t = setTimeout(() => setShowBubbles(true), 400);
-      return () => clearTimeout(t);
-    } else {
-      setShowBubbles(false);
-    }
+    if (active) { const t = setTimeout(() => setShowBubbles(true), 400); return () => clearTimeout(t); }
+    else setShowBubbles(false);
   }, [active]);
 
   return (
     <section
       ref={ref}
-      className="relative w-full min-h-screen flex items-center bg-gradient-to-b from-[#060f06] via-[#0a150a] to-[#060f06] overflow-hidden py-10"
+      className="relative w-full h-screen flex items-center bg-gradient-to-b from-[#060f06] via-[#0a150a] to-[#060f06] overflow-hidden"
     >
-      {/* Grass at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-[25vh] pointer-events-none">
-        <svg viewBox="0 0 1440 300" preserveAspectRatio="none" className="w-full h-full opacity-[0.06]">
-          {[...Array(150)].map((_, i) => (
-            <line key={i} x1={i * 10} y1="300" x2={i * 10 + (Math.sin(i * 0.8) * 30)} y2={100 + Math.random() * 120}
-              stroke="#4a8c5a" strokeWidth={1 + Math.random() * 3} strokeLinecap="round" />
+      <div className="absolute bottom-0 left-0 right-0 h-[15vh] pointer-events-none opacity-[0.05]">
+        <svg viewBox="0 0 1440 200" preserveAspectRatio="none" className="w-full h-full">
+          {[...Array(100)].map((_, i) => (
+            <line key={i} x1={i*14} y1="200" x2={i*14+(Math.sin(i*0.6)*20)} y2={80+Math.random()*60}
+              stroke="#4a8c5a" strokeWidth="1.5" strokeLinecap="round" />
           ))}
         </svg>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 w-full">
-        <div className={`transition-all duration-1000 ${active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          {/* Header */}
-          <div className="text-center mb-12">
-            <span className="text-amber-400/30 text-xs tracking-[0.5em] font-light">
-              PRODUCTS · 产品系列
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-[0.05em] text-white mt-4 mb-2">
-              总有一款
-            </h2>
-            <p className="text-white/20 text-sm tracking-[0.3em] font-light">
-              野里扎啤四大鲜啤系列
-            </p>
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-3 sm:px-6 md:px-12 overflow-y-auto max-h-screen py-8">
+        <div className={`transition-all duration-1000 ${active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+          
+          <div className="text-center mb-8 md:mb-10">
+            <span className="text-amber-400/30 text-[10px] md:text-xs tracking-[0.5em] font-light">PRODUCTS · 产品系列</span>
+            <h2 className="text-2xl md:text-4xl font-bold tracking-[0.03em] text-white mt-3 mb-1">总有一款</h2>
+            <p className="text-white/20 text-xs tracking-[0.3em] font-light">野里扎啤四大鲜啤系列</p>
           </div>
 
-          {/* Product cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             {products.map((p, i) => (
-              <div
-                key={p.name}
-                className="group relative p-6 pt-8 rounded-2xl border border-white/[0.04] bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/[0.08] transition-all duration-500 text-center"
-                style={{ transitionDelay: `${i * 100}ms` }}
-              >
-                {/* Beer glass */}
-                <div className="mb-6">
+              <div key={p.name}
+                className="group relative p-4 md:p-5 rounded-2xl border border-white/[0.04] bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/[0.08] transition-all duration-500 text-center"
+                style={{ transitionDelay: `${i*100}ms` }}>
+                <div className="mb-4">
                   <BeerGlass product={p} active={showBubbles} />
                 </div>
-
-                {/* Tag */}
-                <span className="inline-block text-[10px] px-3 py-0.5 rounded-full bg-amber-400/10 text-amber-400/60 mb-3 tracking-wider">
-                  {p.tag}
-                </span>
-
-                {/* Name */}
-                <h3 className="text-white/85 text-lg font-semibold tracking-wide mb-2">
-                  {p.name}
-                </h3>
-
-                {/* Description */}
-                <p className="text-white/30 text-xs leading-relaxed mb-2 font-light">
-                  {p.desc}
-                </p>
-
-                {/* Specs */}
-                <p className="text-white/15 text-[10px] tracking-wider">
-                  {p.spec}
-                </p>
+                <span className="inline-block text-[9px] md:text-[10px] px-2.5 py-0.5 rounded-full bg-amber-400/10 text-amber-400/60 mb-2 tracking-wider">{p.tag}</span>
+                <h3 className="text-white/85 text-sm md:text-base font-semibold tracking-wide mb-1">{p.name}</h3>
+                <p className="text-white/30 text-[11px] md:text-xs leading-relaxed mb-1 font-light">{p.desc}</p>
+                <p className="text-white/15 text-[9px] md:text-[10px] tracking-wider">{p.spec}</p>
               </div>
             ))}
           </div>

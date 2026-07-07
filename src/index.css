@@ -9,40 +9,22 @@
   --color-beer-brown: #5C3A21;
 }
 
-html {
-  scroll-behavior: smooth;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body {
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #06080a;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: #0D0D0D;
-  color: #fff;
-  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0D0D0D;
-}
-::-webkit-scrollbar-thumb {
-  background: #D4A843;
-  border-radius: 3px;
-}
-
-/* Beer foam animation */
-@keyframes foam-bubble {
-  0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
-  50% { transform: translateY(-10px) scale(1.2); opacity: 0.4; }
-}
-
-@keyframes pour {
-  0% { clip-path: inset(100% 0 0 0); }
-  100% { clip-path: inset(0 0 0 0); }
-}
-
-.animate-foam {
-  animation: foam-bubble 3s ease-in-out infinite;
+canvas {
+  display: block;
 }

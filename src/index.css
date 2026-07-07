@@ -5,8 +5,6 @@
   --color-beer-dark: #2C1810;
   --color-beer-gold: #D4A843;
   --color-beer-cream: #FFF8E7;
-  --color-beer-foam: #FEF3C7;
-  --color-beer-brown: #5C3A21;
 }
 
 * {
@@ -19,12 +17,15 @@ html, body, #root {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #06080a;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #060a04;
+  font-family: 'Inter', system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
 }
 
-canvas {
-  display: block;
+/* Prevent text selection on scroll */
+main {
+  user-select: none;
+  -webkit-user-select: none;
 }

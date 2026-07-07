@@ -1,25 +1,86 @@
-import { Suspense } from "react";
-import Experience from "./scene/Experience";
-import Overlay from "./ui/Overlay";
+import { useState, useCallback, useRef } from "react";
+import ParticleEngine, { directionRef } from "./ParticleEngine";
+import HeroPage from "./pages/HeroPage";
+import AboutPage from "./pages/AboutPage";
+import ProductsPage from "./pages/ProductsPage";
+import ContactPage from "./pages/ContactPage";
 
-function LoadingScreen() {
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
-      <div className="flex flex-col items-center gap-6">
-        <div className="w-12 h-12 rounded-full border border-white/10 animate-pulse" />
-        <p className="text-white/20 text-xs tracking-[0.5em]">LOADING</p>
-      </div>
-    </div>
-  );
-}
+const TOTAL_PAGES = 4;
 
 export default function App() {
+  const [pageIndex, setPageIndex] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
+  const touchStartY = useRef(0);
+  const mouseRef = useRef(null);
+
+  const goToPage = useCallback((newIndex) => {
+    if (newIndex < 0 || newIndex >= TOTAL_PAGES) return;
+    if (transitioning) return;
+    setTransitioning(true);
+    directionRef.current = newIndex > pageIndex ? "down" : "up";
+    setPageIndex(newIndex);
+    setTimeout(() => setTransitioning(false), 800);
+  }, [pageIndex, transitioning]);
+
+  const handleWheel = useCallback((e, pageIdx) => {
+    if (pageIdx !== pageIndex) return;
+    if (transitioning) return;
+    const delta = e.deltaY;
+    if (Math.abs(delta) < 30) return;
+    if (delta > 0) goToPage(pageIdx + 1);
+    else goToPage(pageIdx - 1);
+  }, [pageIndex, transitioning, goToPage]);
+
+  const handleTouchStart = useCallback((e) => {
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback((e) => {
+    const delta = touchStartY.current - e.changedTouches[0].clientY;
+    if (Math.abs(delta) < 50 || transitioning) return;
+    if (delta > 0) goToPage(pageIndex + 1);
+    else goToPage(pageIndex - 1);
+  }, [pageIndex, transitioning, goToPage]);
+
   return (
-    <main className="w-screen h-screen bg-black overflow-hidden">
-      <Suspense fallback={<LoadingScreen />}>
-        <Experience />
-      </Suspense>
-      <Overlay />
+    <main
+      ref={mouseRef}
+      className="relative w-screen h-screen overflow-hidden bg-[#060a04]"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Page container with scroll snapping */}
+      <div
+        className="w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.65,0,0.35,1)]"
+        style={{ transform: `translateY(-${pageIndex * 100}vh)` }}
+      >
+        <HeroPage active={pageIndex === 0 && !transitioning} onWheel={handleWheel} />
+        <AboutPage active={pageIndex === 1 && !transitioning} onWheel={handleWheel} />
+        <ProductsPage active={pageIndex === 2 && !transitioning} onWheel={handleWheel} />
+        <ContactPage active={pageIndex === 3 && !transitioning} onWheel={handleWheel} />
+      </div>
+
+      {/* Particle overlay */}
+      <ParticleEngine
+        pageIndex={pageIndex}
+        direction={directionRef.current}
+        mouseRef={mouseRef}
+      />
+
+      {/* Page indicators */}
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3">
+        {[...Array(TOTAL_PAGES)].map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goToPage(i)}
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${
+              i === pageIndex
+                ? "bg-amber-400/60 scale-150"
+                : "bg-white/10 hover:bg-white/20"
+            }`}
+          />
+        ))}
+      </div>
     </main>
   );
 }

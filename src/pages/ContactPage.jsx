@@ -6,7 +6,7 @@ export default function ContactPage({ active, onWheel }) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const handler = (e) => onWheel(e, 3);
+    const handler = (e) => onWheel(e, 4);
     el.addEventListener("wheel", handler, { passive: false });
     return () => el.removeEventListener("wheel", handler);
   }, [onWheel]);

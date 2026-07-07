@@ -3,9 +3,10 @@ import ParticleEngine, { directionRef } from "./ParticleEngine";
 import HeroPage from "./pages/HeroPage";
 import AboutPage from "./pages/AboutPage";
 import ProductsPage from "./pages/ProductsPage";
+import MenuPage from "./pages/MenuPage";
 import ContactPage from "./pages/ContactPage";
 
-const TOTAL_PAGES = 4;
+const TOTAL_PAGES = 5;
 
 export default function App() {
   const [pageIndex, setPageIndex] = useState(0);
@@ -45,11 +46,10 @@ export default function App() {
   return (
     <main
       ref={mouseRef}
-      className="relative w-screen h-screen overflow-hidden bg-[#060a04]"
+      className="relative w-screen h-screen overflow-hidden bg-[#040a04]"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Page container with scroll snapping */}
       <div
         className="w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.65,0,0.35,1)]"
         style={{ transform: `translateY(-${pageIndex * 100}vh)` }}
@@ -57,26 +57,19 @@ export default function App() {
         <HeroPage active={pageIndex === 0 && !transitioning} onWheel={handleWheel} />
         <AboutPage active={pageIndex === 1 && !transitioning} onWheel={handleWheel} />
         <ProductsPage active={pageIndex === 2 && !transitioning} onWheel={handleWheel} />
-        <ContactPage active={pageIndex === 3 && !transitioning} onWheel={handleWheel} />
+        <MenuPage active={pageIndex === 3 && !transitioning} onWheel={handleWheel} />
+        <ContactPage active={pageIndex === 4 && !transitioning} onWheel={handleWheel} />
       </div>
 
-      {/* Particle overlay */}
-      <ParticleEngine
-        pageIndex={pageIndex}
-        direction={directionRef.current}
-        mouseRef={mouseRef}
-      />
+      <ParticleEngine pageIndex={pageIndex} direction={directionRef.current} mouseRef={mouseRef} />
 
-      {/* Page indicators */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3">
         {[...Array(TOTAL_PAGES)].map((_, i) => (
           <button
             key={i}
             onClick={() => goToPage(i)}
             className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${
-              i === pageIndex
-                ? "bg-amber-400/60 scale-150"
-                : "bg-white/10 hover:bg-white/20"
+              i === pageIndex ? "bg-amber-400/60 scale-150" : "bg-white/10 hover:bg-white/20"
             }`}
           />
         ))}

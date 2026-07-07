@@ -17,15 +17,58 @@ html, body, #root {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #060a04;
+  background: #040a04;
   font-family: 'Inter', system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior: none;
 }
 
-/* Prevent text selection on scroll */
 main {
   user-select: none;
   -webkit-user-select: none;
+}
+
+/* Beer bubble animations */
+@keyframes bubble {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-4px) scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-60px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce-dot {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-bubble {
+  animation: bubble 2s ease-in-out infinite;
+}
+
+.animate-rise {
+  animation: rise 3s ease-out infinite;
+}
+
+.animate-bounce {
+  animation: bounce-dot 1.5s ease-in-out infinite;
 }

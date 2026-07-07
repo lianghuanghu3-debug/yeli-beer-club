@@ -14,19 +14,10 @@ export default function AboutPage({ active, onWheel }) {
   return (
     <section
       ref={ref}
-      className="relative w-full h-screen flex items-center bg-gradient-to-b from-[#061006] via-[#0a150a] to-[#060f06] overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#040a04] via-[#0a150a] to-[#040a04] overflow-hidden"
     >
-      <div className="absolute right-0 top-[20vh] w-[25vw] h-[50vh] pointer-events-none opacity-[0.03]">
-        <svg viewBox="0 0 200 500" className="w-full h-full">
-          {[...Array(25)].map((_, i) => (
-            <line key={i} x1={5+i*8} y1="500" x2={5+i*8} y2={200+Math.random()*200}
-              stroke="#4a8c5a" strokeWidth="1.5" strokeLinecap="round" />
-          ))}
-        </svg>
-      </div>
-
-      <div className="relative z-10 w-full max-w-3xl mx-auto px-4 py-10 text-center">
-        <div className={`transition-all duration-1000 delay-200 ${active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div className="absolute inset-0 flex items-center justify-center text-center px-4 w-full">
+        <div className={`transition-all duration-1000 delay-200 max-w-2xl w-full ${active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           
           <span className="text-amber-400/30 text-[10px] md:text-xs tracking-[0.5em] font-light">
             ABOUT · 关于我们
@@ -44,12 +35,12 @@ export default function AboutPage({ active, onWheel }) {
             扎啤相伴
           </h2>
 
-          <p className="text-white/35 text-sm md:text-base leading-relaxed font-light max-w-xl mx-auto mb-12 px-2">
+          <p className="text-white/35 text-sm md:text-base leading-relaxed font-light mb-12">
             野里扎啤俱乐部坐落于海口市秀英区永万路108号，展兴高新花园旁。
             坚持鲜扎啤直供，精选优质麦芽与啤酒花，匠心酿造每一杯。
           </p>
 
-          <div className="grid grid-cols-3 gap-4 md:gap-10">
+          <div className="grid grid-cols-3 gap-6 md:gap-12">
             {[
               { num: "01", title: "鲜啤直供", desc: "全程冷链锁鲜" },
               { num: "02", title: "聚会首选", desc: "环境舒适品类丰富" },

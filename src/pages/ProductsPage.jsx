@@ -16,9 +16,8 @@ function BeerGlass({ product, active }) {
     <div className="relative flex justify-center">
       <div className="relative w-14 h-36 sm:w-16 sm:h-40 md:w-20 md:h-48">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-14 sm:w-16 md:w-20 h-32 sm:h-36 md:h-44 border-2 border-white/20 rounded-b-3xl rounded-t-xl overflow-hidden bg-black/20 backdrop-blur-sm">
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t transition-all duration-[2000ms]"
-            style={{ height: active ? "70%" : "0%", background: `linear-gradient(to top, var(--tw-gradient-stops))` }}
-            className={product.liquid} />
+          <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t ${product.liquid} transition-all duration-[2000ms]`}
+            style={{ height: active ? "70%" : "0%" }} />
           <div className={`absolute left-0 right-0 bg-gradient-to-b ${product.foam} transition-all duration-[2000ms] delay-300 rounded-t-lg`}
             style={{ height: active ? "16%" : "0%", bottom: active ? "70%" : "0%", opacity: active ? 1 : 0 }}>
             {active && [...Array(6)].map((_, i) => (
@@ -59,19 +58,10 @@ export default function ProductsPage({ active, onWheel }) {
   return (
     <section
       ref={ref}
-      className="relative w-full h-screen flex items-center bg-gradient-to-b from-[#060f06] via-[#0a150a] to-[#060f06] overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#040a04] via-[#0a150a] to-[#040a04] overflow-hidden"
     >
-      <div className="absolute bottom-0 left-0 right-0 h-[15vh] pointer-events-none opacity-[0.05]">
-        <svg viewBox="0 0 1440 200" preserveAspectRatio="none" className="w-full h-full">
-          {[...Array(100)].map((_, i) => (
-            <line key={i} x1={i*14} y1="200" x2={i*14+(Math.sin(i*0.6)*20)} y2={80+Math.random()*60}
-              stroke="#4a8c5a" strokeWidth="1.5" strokeLinecap="round" />
-          ))}
-        </svg>
-      </div>
-
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-3 sm:px-6 md:px-12 overflow-y-auto max-h-screen py-8">
-        <div className={`transition-all duration-1000 ${active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+      <div className="absolute inset-0 flex items-center justify-center px-3 sm:px-6 w-full overflow-y-auto py-8">
+        <div className={`transition-all duration-1000 max-w-5xl w-full ${active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           
           <div className="text-center mb-8 md:mb-10">
             <span className="text-amber-400/30 text-[10px] md:text-xs tracking-[0.5em] font-light">PRODUCTS · 产品系列</span>
@@ -84,7 +74,7 @@ export default function ProductsPage({ active, onWheel }) {
               <div key={p.name}
                 className="group relative p-4 md:p-5 rounded-2xl border border-white/[0.04] bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/[0.08] transition-all duration-500 text-center"
                 style={{ transitionDelay: `${i*100}ms` }}>
-                <div className="mb-4">
+                <div className="mb-4 flex justify-center">
                   <BeerGlass product={p} active={showBubbles} />
                 </div>
                 <span className="inline-block text-[9px] md:text-[10px] px-2.5 py-0.5 rounded-full bg-amber-400/10 text-amber-400/60 mb-2 tracking-wider">{p.tag}</span>

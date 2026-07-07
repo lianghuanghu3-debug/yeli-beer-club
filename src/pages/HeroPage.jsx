@@ -14,28 +14,9 @@ export default function HeroPage({ active, onWheel }) {
   return (
     <section
       ref={ref}
-      className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a0f0a] via-[#081208] to-[#061006]"
+      className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a0f0a] via-[#081208] to-[#040a04]"
     >
-      {/* Grassland only - bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-[30vh] pointer-events-none">
-        <svg viewBox="0 0 1440 400" preserveAspectRatio="none" className="w-full h-full">
-          <defs>
-            <linearGradient id="hg" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stopColor="#0a1508" stopOpacity="0.9" />
-              <stop offset="60%" stopColor="#0d1a0a" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#0d1a0a" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          <path d="M0,400 L0,300 Q80,250 160,310 Q240,260 320,320 Q400,240 480,310 Q560,230 640,300 Q720,220 800,290 Q880,240 960,310 Q1040,220 1120,300 Q1200,250 1280,310 Q1360,230 1440,290 L1440,400 Z" fill="url(#hg)" />
-          {[...Array(150)].map((_, i) => (
-            <line key={i} x1={i*9.6} y1="400" x2={i*9.6+(Math.sin(i*0.7)*18)} y2={300-Math.random()*60}
-              stroke="#0d1a0a" strokeWidth="1.5" opacity={0.3+Math.random()*0.4} />
-          ))}
-        </svg>
-      </div>
-
-      {/* Content - centered */}
-      <div className="relative z-10 text-center px-4 w-full max-w-4xl mx-auto">
+      <div className="absolute inset-0 flex items-center justify-center text-center px-4 w-full">
         <div className={`transition-all duration-1200 ${active ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
           
           <div className="mb-10 md:mb-14">

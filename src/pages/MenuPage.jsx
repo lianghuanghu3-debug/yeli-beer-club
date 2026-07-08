@@ -20,7 +20,7 @@ export default function MenuPage({ active, onWheel }) {
   return (
     <section
       ref={ref}
-      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#040a04] via-[#0a1408] to-[#040a04] overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#1a2a18] via-[#243822] to-[#1a2a18] overflow-hidden"
     >
       <div className="absolute inset-0 flex items-center justify-center px-4 w-full overflow-y-auto py-8">
         <div className={`transition-all duration-1000 max-w-3xl w-full ${active ? "opacity-100" : "opacity-0 translate-y-6"}`}>

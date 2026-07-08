@@ -14,7 +14,7 @@ export default function AboutPage({ active, onWheel }) {
   return (
     <section
       ref={ref}
-      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#040a04] via-[#0a150a] to-[#040a04] overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#1a2a18] via-[#243822] to-[#1a2a18] overflow-hidden"
     >
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 w-full overflow-y-auto py-12">
         <div className={`transition-all duration-1000 delay-200 max-w-lg w-full ${active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>

@@ -14,7 +14,7 @@ export default function HeroPage({ active, onWheel }) {
   return (
     <section
       ref={ref}
-      className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a0f0a] via-[#081208] to-[#040a04]"
+      className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#1e301c] via-[#1e301c] to-[#1a2a18]"
     >
       <div className="absolute inset-0 flex items-center justify-center text-center px-4 w-full">
         <div className={`transition-all duration-1200 ${active ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>

@@ -14,7 +14,7 @@ export default function ContactPage({ active, onWheel }) {
   return (
     <section
       ref={ref}
-      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#040a04] via-[#020602] to-[#010301] overflow-hidden"
+      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#1a2a18] via-[#0e1a0c] to-[#0a1408] overflow-hidden"
     >
       <div className="absolute inset-0 flex items-center justify-center px-4 w-full overflow-y-auto py-8">
         <div className={`transition-all duration-1000 delay-200 max-w-2xl w-full text-center ${active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>

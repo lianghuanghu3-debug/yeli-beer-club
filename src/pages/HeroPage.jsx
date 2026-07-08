@@ -16,14 +16,15 @@ export default function HeroPage({ active, onWheel }) {
       ref={ref}
       className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#1e301c] via-[#1e301c] to-[#1a2a18]"
     >
-      {/* Brand name - at top, same style as original */}
-      <div className="absolute top-8 md:top-12 left-0 right-0 text-center z-10">
-        <span className="text-amber-400/40 text-[11px] md:text-sm tracking-[0.6em] font-light border border-amber-400/10 px-6 md:px-8 py-2 md:py-3">
-          野 里 扎 啤 俱 乐 部
-        </span>
+      {/* Brand name at top */}
+      <div className="absolute top-6 md:top-10 left-0 right-0 text-center z-10">
+        <h2 className="text-white/80 text-xl md:text-3xl font-bold tracking-[0.15em]">
+          野里扎啤俱乐部
+        </h2>
+        <div className="w-12 h-[2px] bg-amber-400/40 mx-auto mt-2" />
       </div>
 
-      {/* Main content - centered */}
+      {/* Main content */}
       <div className="flex-1 flex items-center justify-center text-center px-4 w-full">
         <div className={`transition-all duration-1200 ${active ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
 
@@ -44,15 +45,13 @@ export default function HeroPage({ active, onWheel }) {
         </div>
       </div>
 
-      {/* Scroll hint - clearer, same layout as original */}
+      {/* Scroll hint */}
       <div className="absolute bottom-8 md:bottom-10 left-0 right-0 text-center z-10">
-        <div className="flex flex-col items-center gap-3">
-          <span className="text-white/40 text-[11px] md:text-sm tracking-[0.4em] font-medium animate-pulse">
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-white/50 text-sm md:text-base tracking-[0.3em] font-medium animate-pulse">
             向下滑动探索
           </span>
-          <div className="w-5 h-8 rounded-full border border-white/15 flex justify-center pt-1.5">
-            <div className="w-1.5 h-3 rounded-full bg-amber-400/50 animate-bounce" />
-          </div>
+          <div className="w-[2px] h-10 bg-gradient-to-b from-amber-400/40 to-transparent" />
         </div>
       </div>
     </section>

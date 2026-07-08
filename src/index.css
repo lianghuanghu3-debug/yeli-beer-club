@@ -19,7 +19,13 @@ html, body, #root {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior: none;
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
 }
+
+.animate-breathe { animation: breathe 4s ease-in-out infinite; }}
 
 main {
   user-select: none;

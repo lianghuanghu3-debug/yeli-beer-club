@@ -18,7 +18,7 @@ export default function HeroPage({ active, onWheel }) {
     >
       {/* Brand name at top */}
       <div className="absolute top-6 md:top-10 left-0 right-0 text-center z-10">
-        <h2 className="text-white/80 text-xl md:text-3xl font-bold tracking-[0.15em]">
+        <h2 className="text-white/90 text-xl md:text-3xl font-bold tracking-[0.15em] animate-breathe">
           野里扎啤俱乐部
         </h2>
         <div className="w-12 h-[2px] bg-amber-400/40 mx-auto mt-2" />
